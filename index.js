@@ -1,15 +1,15 @@
 'use strict'
 var Buffer = require('safe-buffer').Buffer
-var Transform = require('stream').Transform
+var Transform = require('readable-stream').Transform
 var inherits = require('inherits')
 
-function throwIfNotStringOrBuffer (val, prefix) {
+function throwIfNotStringOrBuffer(val, prefix) {
   if (!Buffer.isBuffer(val) && typeof val !== 'string') {
     throw new TypeError(prefix + ' must be a string or a buffer')
   }
 }
 
-function HashBase (blockSize) {
+function HashBase(blockSize) {
   Transform.call(this)
 
   this._block = Buffer.allocUnsafe(blockSize)
